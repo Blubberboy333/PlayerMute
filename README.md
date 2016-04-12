@@ -1,5 +1,6 @@
 # PlayerMute
 Allows admins to mute certain players
+THIS PLUGIN IS NOT FINISHED
 
 # Commands
 /mute (player)
