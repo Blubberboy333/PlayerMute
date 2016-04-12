@@ -2,7 +2,7 @@
 Allows admins to mute certain players
 
 # Commands
-/mute "<player>"
+/mute (player)
 
 # Permissions
 mute.cmd: Allows the player to mute other players. Default set to Op
