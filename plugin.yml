@@ -7,3 +7,14 @@ commands:
     usage: /mute <player>
     description: Stops  a player from chatting until he/she is unmuted
     permission: mute.cmd
+permissions:
+  mute:
+    default: false
+    description: Allows the player to use all of the PlayerMute functions
+    children:
+      mute.cmd:
+        default: op
+        description: Allows the player to use the PlayerMute command
+      mute.block:
+        default: false
+        description: Allows the player to block mutes from other players
