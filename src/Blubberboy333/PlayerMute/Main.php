@@ -41,21 +41,27 @@ class Main extends PluginBAse implements Listener{
           if($player instanceof Player){
             $name = $player->getName();
             if($this->checkMute($player) == true){
-              if($this->checkBlock($player) == false){
-                unset($this->players[$name]);
-                $sender->sendMessage(TextFormat::YELLOW.$name." is no longer muted!");
-                $player->sendMessage(TextFormat::YELLOW."You can now chat again!");
-                return true;
-                
-              }else{
-                $sender->sendMessage(TextFormat::YELLOW."That player can't be muted!");
-                return true;
-              }
-            }else{
-              array_push($this->players, $name);
-              $sender->sendMessage(TextFormat::YELLOW.$name." is not muted");
-              $player->sendMessage(TextFormat::YELLOW."You have been muted!");
+              unset($this->players[$name]);
+              $sender->sendMessage(TextFormat::YELLOW.$name." is no longer muted!");
+              $player->sendMessage(TextFormat::YELLOW."You can now chat again!");
               return true;
+            }else{
+              if($this->checkBlock($player) == false){
+                array_push($this->players, $name);
+                $sender->sendMessage(TextFormat::YELLOW.$name." is not muted");
+                $player->sendMessage(TextFormat::YELLOW."You have been muted!");
+                return true;
+              }else{
+                if($sender instanceof Player){
+                  $sender->sendMessage(TextFormat::YELLOW."That player can't be muted!");
+                  return true;
+                }else{
+                  array_push($this->players, $name);
+                  $sender->sendMessage(TextFormat::YELLOW.$name." is not muted");
+                  $player->sendMessage(TextFormat::YELLOW."You have been muted!");
+                  return true;
+                }
+              }
             }
           }else{
             $sender->sendMessage(TextFormat::RED."Error: ".$args[0]." isn't online!");
@@ -67,6 +73,14 @@ class Main extends PluginBAse implements Listener{
       }else{
         $sender->sendMessage(TextFormat::RED."You don't have permission to use that command!");
       }
+    }
+  }
+  
+  public function onChat(PlayerChatEvent $event){
+    $player = $event->getPlayer();
+    if($this->checkMute($player) == true){
+      $event->setCancelled();
+      $sender->sendMessage(TextFormat::YELLOW."You can't chat while muted!");
     }
   }
 }
