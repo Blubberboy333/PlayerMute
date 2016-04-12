@@ -1,0 +1,9 @@
+name: PlayerMute
+version: 1.0.0
+api: [1.0.0, 2.0.0]
+main: Blubberboy333\PlayerMute\Main
+commands:
+  mute:
+    usage: /mute <player>
+    description: Stops  a player from chatting until he/she is unmuted
+    permission: mute.cmd
