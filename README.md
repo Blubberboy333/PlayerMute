@@ -1,6 +1,5 @@
 # PlayerMute
-Allows admins to mute certain players
-THIS PLUGIN IS NOT FINISHED
+Allows admins to mute certain players\nThis plugin has not been tested yet
 
 # Commands
 /mute (player)
